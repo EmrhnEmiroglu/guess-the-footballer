@@ -1,0 +1,16 @@
+﻿.gtf-media-field {
+    margin-top: 8px;
+}
+
+.gtf-player-photo-preview img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.gtf-media-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
