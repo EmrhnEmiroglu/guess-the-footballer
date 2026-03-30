@@ -91,16 +91,22 @@
 
         container.innerHTML = '';
         var letters = guess ? guess.split('') : [];
-        var maxBoxes = Math.max(letters.length, 6);
+        var maxBoxes = Math.max(letters.length, 5);
 
         for (var i = 0; i < maxBoxes; i++) {
             var box = document.createElement('span');
             box.className = 'gtf-letter-box';
-            box.textContent = letters[i] ? letters[i].toUpperCase() : '';
+            var char = letters[i] || '';
+            if (char === ' ') {
+                box.textContent = '•';
+                box.classList.add('is-space');
+            } else {
+                box.textContent = char ? char.toUpperCase() : '';
+            }
             container.appendChild(box);
         }
 
-        row.classList.remove('is-wrong', 'is-correct');
+        row.classList.remove('is-wrong', 'is-correct', 'is-active');
         if (status === 'wrong') {
             row.classList.add('is-wrong');
         }
@@ -120,6 +126,19 @@
                 status = 'wrong';
             }
             renderGuessRow(row, guess, status);
+        });
+
+        setActiveRow();
+    }
+
+    function setActiveRow() {
+        var rows = elements.root.querySelectorAll('.gtf-attempt-row');
+        rows.forEach(function (row, index) {
+            if (!state.completed && index === state.attempts) {
+                row.classList.add('is-active');
+            } else {
+                row.classList.remove('is-active');
+            }
         });
     }
 
@@ -167,8 +186,9 @@
                 elements.image.src = state.photoUrl;
                 elements.image.alt = '';
                 setBlur(blurLevels[0]);
-                setFormDisabled(false);
                 renderAttempts();
+                setFormDisabled(false);
+                elements.input.focus();
                 saveGameState();
             })
             .catch(function () {
@@ -229,6 +249,9 @@
                 saveGameState();
                 saveStorage(storageKeys.stats, stats);
                 setFormDisabled(state.completed);
+                if (!state.completed) {
+                    elements.input.focus();
+                }
             })
             .catch(function () {
                 setMessage(gtfGame.strings.loadError, 'wrong');
@@ -253,6 +276,9 @@
             setBlur(state.completed ? 0 : blurLevels[Math.min(state.attempts, blurLevels.length - 1)]);
             renderAttempts();
             setFormDisabled(state.completed);
+            if (!state.completed) {
+                elements.input.focus();
+            }
             return;
         }
 
