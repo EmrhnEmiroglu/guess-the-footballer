@@ -18,6 +18,7 @@ define('GTF_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('GTF_AJAX_NONCE_ACTION', 'gtf_ajax_nonce');
 
 require_once GTF_PLUGIN_DIR . 'includes/class-footballer-cpt.php';
+require_once GTF_PLUGIN_DIR . 'includes/class-game-logic.php';
 require_once GTF_PLUGIN_DIR . 'includes/class-ajax-handler.php';
 require_once GTF_PLUGIN_DIR . 'includes/class-template-loader.php';
 

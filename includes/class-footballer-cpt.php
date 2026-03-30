@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 /**
  * Footballer Custom Post Type ve admin meta alanları.
@@ -144,7 +144,7 @@ class GTF_Footballer_CPT {
     public static function column_content($column, $post_id) {
         if ('player_name' === $column) {
             $name = get_post_meta($post_id, self::META_PLAYER_NAME, true);
-            echo esc_html($name ? $name : '—');
+            echo esc_html($name ? $name : '-');
         }
 
         if ('player_photo' === $column) {
@@ -152,7 +152,7 @@ class GTF_Footballer_CPT {
             if ($photo_id) {
                 echo wp_kses_post(wp_get_attachment_image($photo_id, 'thumbnail'));
             } else {
-                echo '—';
+                echo '-';
             }
         }
     }
