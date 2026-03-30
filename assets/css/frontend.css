@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap');
+
 :root {
     --gtf-correct: #6aaa64;
     --gtf-wrong: #dc3545;
-    --gtf-neutral: #787c7e;
+    --gtf-neutral: #6b7280;
     --gtf-bg: #ffffff;
     --gtf-container-bg: #f8f9fa;
     --gtf-border: #d3d6da;
@@ -12,21 +14,48 @@
 }
 
 .gtf-game {
+    position: relative;
     display: flex;
     justify-content: center;
     padding: 32px 16px 64px;
     background: radial-gradient(circle at top, #eef2ff, #ffffff 40%, #f6f7fb 100%);
     min-height: 100vh;
     font-family: var(--gtf-font);
+    overflow: hidden;
+}
+
+.gtf-game::before,
+.gtf-game::after {
+    content: "";
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: linear-gradient(140deg, rgba(59, 130, 246, 0.18), rgba(99, 102, 241, 0.02));
+    filter: blur(40px);
+    z-index: 0;
+}
+
+.gtf-game::before {
+    top: -120px;
+    left: -120px;
+}
+
+.gtf-game::after {
+    bottom: -140px;
+    right: -140px;
 }
 
 .gtf-card {
+    position: relative;
     width: 100%;
     max-width: 680px;
     background: var(--gtf-container-bg);
     border-radius: var(--gtf-radius);
     padding: 32px;
     box-shadow: var(--gtf-shadow);
+    z-index: 1;
+    animation: gtf-fade-up 0.6s ease;
 }
 
 .gtf-header {
@@ -38,6 +67,7 @@
     font-size: 32px;
     margin: 0 0 8px;
     color: #111827;
+    letter-spacing: 0.5px;
 }
 
 .gtf-subtitle {
@@ -52,6 +82,7 @@
 }
 
 .gtf-image-frame {
+    position: relative;
     width: 320px;
     max-width: 100%;
     aspect-ratio: 3 / 4;
@@ -61,6 +92,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.2);
+}
+
+.gtf-image-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 16px;
+    pointer-events: none;
 }
 
 .gtf-player-image {
@@ -82,6 +123,13 @@
     grid-template-columns: 90px 1fr;
     align-items: center;
     gap: 12px;
+    padding: 8px 12px;
+    border-radius: 12px;
+    transition: var(--gtf-transition);
+}
+
+.gtf-attempt-row.is-active {
+    background: rgba(17, 24, 39, 0.05);
 }
 
 .gtf-attempt-label {
@@ -110,6 +158,11 @@
     transition: var(--gtf-transition);
 }
 
+.gtf-letter-box.is-space {
+    color: var(--gtf-neutral);
+    font-weight: 600;
+}
+
 .gtf-attempt-row.is-wrong .gtf-letter-box {
     border-color: var(--gtf-wrong);
     color: var(--gtf-wrong);
@@ -133,6 +186,13 @@
     border-radius: 10px;
     border: 1px solid var(--gtf-border);
     font-size: 16px;
+    transition: var(--gtf-transition);
+}
+
+.gtf-input:focus {
+    outline: none;
+    border-color: #111827;
+    box-shadow: 0 0 0 3px rgba(17, 24, 39, 0.15);
 }
 
 .gtf-button {
@@ -143,6 +203,11 @@
     color: #fff;
     cursor: pointer;
     font-weight: 600;
+    transition: var(--gtf-transition);
+}
+
+.gtf-button:hover {
+    transform: translateY(-1px);
 }
 
 .gtf-button--ghost {
@@ -163,6 +228,7 @@
     color: var(--gtf-neutral);
     text-align: center;
     margin-bottom: 12px;
+    transition: var(--gtf-transition);
 }
 
 .gtf-message.is-wrong {
@@ -182,6 +248,24 @@
 .gtf-streak {
     font-weight: 600;
     color: #111827;
+}
+
+@keyframes gtf-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
 }
 
 @media (max-width: 768px) {
