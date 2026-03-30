@@ -1,0 +1,50 @@
+﻿{
+  "name": "guessthefootballer",
+  "version": "0.1.0",
+  "description": "WordPress için bulanık futbolcu fotoğrafından 5 denemede tahmin oyunu.",
+  "author": {
+    "name": "EmrhnEmiroglu",
+    "email": "emirhanemiroglu33@gmail.com",
+    "url": "https://github.com/EmrhnEmiroglu"
+  },
+  "homepage": "https://github.com/EmrhnEmiroglu/guess-the-footballer",
+  "repository": "https://github.com/EmrhnEmiroglu/guess-the-footballer",
+  "license": "GPL-2.0-or-later",
+  "keywords": [
+    "wordpress",
+    "football",
+    "game",
+    "wordle"
+  ],
+  "skills": "./skills/",
+  "hooks": "./hooks.json",
+  "mcpServers": "./.mcp.json",
+  "apps": "./.app.json",
+  "interface": {
+    "displayName": "Guess The Footballer",
+    "shortDescription": "Bulanık futbolcu fotoğrafından tahmin oyunu",
+    "longDescription": "Wordle tarzı 5 denemeli futbolcu tahmin oyunu. Her yanlışta bulanıklık azalır, streak bilgisi localStorage ile korunur.",
+    "developerName": "EmrhnEmiroglu",
+    "category": "Entertainment",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/EmrhnEmiroglu/guess-the-footballer",
+    "privacyPolicyURL": "https://github.com/EmrhnEmiroglu/guess-the-footballer",
+    "termsOfServiceURL": "https://github.com/EmrhnEmiroglu/guess-the-footballer",
+    "defaultPrompt": [
+      "Gereksinimlere göre eklentiyi oluştur.",
+      "AJAX endpoint'lerini yaz ve nonce ekle.",
+      "Wordle tarzı arayüzü tasarla."
+    ],
+    "brandColor": "#6AAA64",
+    "composerIcon": "./assets/icon.png",
+    "logo": "./assets/logo.png",
+    "screenshots": [
+      "./assets/screenshot1.png",
+      "./assets/screenshot2.png",
+      "./assets/screenshot3.png"
+    ]
+  }
+}
