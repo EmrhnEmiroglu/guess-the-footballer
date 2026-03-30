@@ -113,7 +113,7 @@ class GTF_Ajax_Handler {
             );
         }
 
-        $is_correct = self::normalize($guess) === self::normalize($correct_name);
+        $is_correct = GTF_Game_Logic::is_correct_guess($guess, $correct_name);
 
         wp_send_json_success(
             array(
@@ -121,26 +121,5 @@ class GTF_Ajax_Handler {
                 'correct_name' => $correct_name,
             )
         );
-    }
-
-    private static function normalize($string) {
-        $string = trim($string);
-
-        if (function_exists('mb_strtolower')) {
-            $string = mb_strtolower($string, 'UTF-8');
-        } else {
-            $string = strtolower($string);
-        }
-
-        $replacements = array(
-            'ı' => 'i', 'İ' => 'i',
-            'ğ' => 'g', 'Ğ' => 'g',
-            'ü' => 'u', 'Ü' => 'u',
-            'ş' => 's', 'Ş' => 's',
-            'ö' => 'o', 'Ö' => 'o',
-            'ç' => 'c', 'Ç' => 'c',
-        );
-
-        return strtr($string, $replacements);
     }
 }
