@@ -1,16 +1,31 @@
-﻿.gtf-media-field {
+.gtf-media-field {
     margin-top: 8px;
+}
+
+.gtf-player-photo-preview {
+    margin-bottom: 8px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gtf-player-photo-preview img {
     max-width: 100%;
     height: auto;
     display: block;
-    margin-bottom: 8px;
 }
 
 .gtf-media-actions {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
+}
+
+.gtf-media-actions .button {
+    min-width: 120px;
 }

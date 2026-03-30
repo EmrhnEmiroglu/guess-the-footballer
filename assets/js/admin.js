@@ -1,5 +1,16 @@
-﻿jQuery(function ($) {
+jQuery(function ($) {
     var frame;
+
+    function updatePreview($field, attachment) {
+        $field.find('.gtf-player-photo-id').val(attachment ? attachment.id : '');
+        if (attachment) {
+            $field.find('.gtf-player-photo-preview').html('<img src="' + attachment.url + '" alt="" />');
+            $field.find('.gtf-media-remove').show();
+        } else {
+            $field.find('.gtf-player-photo-preview').html('<span class="description">Fotoğraf seçilmedi</span>');
+            $field.find('.gtf-media-remove').hide();
+        }
+    }
 
     $(document).on('click', '.gtf-media-select', function (event) {
         event.preventDefault();
@@ -20,9 +31,7 @@
 
         frame.on('select', function () {
             var attachment = frame.state().get('selection').first().toJSON();
-            $field.find('.gtf-player-photo-id').val(attachment.id);
-            $field.find('.gtf-player-photo-preview').html('<img src="' + attachment.url + '" alt="" />');
-            $field.find('.gtf-media-remove').show();
+            updatePreview($field, attachment);
         });
 
         frame.open();
@@ -32,8 +41,14 @@
         event.preventDefault();
 
         var $field = $(this).closest('.gtf-media-field');
-        $field.find('.gtf-player-photo-id').val('');
-        $field.find('.gtf-player-photo-preview').html('');
-        $(this).hide();
+        updatePreview($field, null);
+    });
+
+    $('.gtf-media-field').each(function () {
+        var $field = $(this);
+        var hasImage = $field.find('.gtf-player-photo-id').val();
+        if (!hasImage) {
+            updatePreview($field, null);
+        }
     });
 });
