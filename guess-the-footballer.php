@@ -19,6 +19,7 @@ define('GTF_AJAX_NONCE_ACTION', 'gtf_ajax_nonce');
 
 require_once GTF_PLUGIN_DIR . 'includes/class-footballer-cpt.php';
 require_once GTF_PLUGIN_DIR . 'includes/class-ajax-handler.php';
+require_once GTF_PLUGIN_DIR . 'includes/class-template-loader.php';
 
 function gtf_init_plugin() {
     if (class_exists('GTF_Footballer_CPT')) {
@@ -27,6 +28,10 @@ function gtf_init_plugin() {
 
     if (class_exists('GTF_Ajax_Handler')) {
         GTF_Ajax_Handler::init();
+    }
+
+    if (class_exists('GTF_Template_Loader')) {
+        GTF_Template_Loader::init();
     }
 }
 add_action('plugins_loaded', 'gtf_init_plugin');
