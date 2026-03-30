@@ -1,0 +1,35 @@
+﻿# OS / Editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+/dist/
+/build/
+*.zip
+
+# Environment
+.env
+.env.*
+
+# WordPress
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/advanced-cache.php
+wp-content/wp-cache-config.php
+wp-content/plugins/hello.php
+wp-content/plugins/akismet/
+wp-content/plugins/wordpress-importer/
