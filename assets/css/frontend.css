@@ -1,0 +1,205 @@
+:root {
+    --gtf-correct: #6aaa64;
+    --gtf-wrong: #dc3545;
+    --gtf-neutral: #787c7e;
+    --gtf-bg: #ffffff;
+    --gtf-container-bg: #f8f9fa;
+    --gtf-border: #d3d6da;
+    --gtf-shadow: 0 24px 60px rgba(18, 24, 40, 0.12);
+    --gtf-radius: 18px;
+    --gtf-transition: all 0.3s ease;
+    --gtf-font: "Space Grotesk", "Segoe UI", sans-serif;
+}
+
+.gtf-game {
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px 64px;
+    background: radial-gradient(circle at top, #eef2ff, #ffffff 40%, #f6f7fb 100%);
+    min-height: 100vh;
+    font-family: var(--gtf-font);
+}
+
+.gtf-card {
+    width: 100%;
+    max-width: 680px;
+    background: var(--gtf-container-bg);
+    border-radius: var(--gtf-radius);
+    padding: 32px;
+    box-shadow: var(--gtf-shadow);
+}
+
+.gtf-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.gtf-title {
+    font-size: 32px;
+    margin: 0 0 8px;
+    color: #111827;
+}
+
+.gtf-subtitle {
+    margin: 0;
+    color: var(--gtf-neutral);
+}
+
+.gtf-image-section {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 28px;
+}
+
+.gtf-image-frame {
+    width: 320px;
+    max-width: 100%;
+    aspect-ratio: 3 / 4;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gtf-player-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(20px);
+    transition: filter 0.3s ease;
+}
+
+.gtf-attempts {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.gtf-attempt-row {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    align-items: center;
+    gap: 12px;
+}
+
+.gtf-attempt-label {
+    font-weight: 600;
+    color: #111827;
+}
+
+.gtf-attempt-boxes {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 8px;
+}
+
+.gtf-letter-box {
+    width: 44px;
+    height: 52px;
+    border-radius: 8px;
+    border: 2px solid var(--gtf-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 18px;
+    color: #111827;
+    background: #ffffff;
+    transition: var(--gtf-transition);
+}
+
+.gtf-attempt-row.is-wrong .gtf-letter-box {
+    border-color: var(--gtf-wrong);
+    color: var(--gtf-wrong);
+}
+
+.gtf-attempt-row.is-correct .gtf-letter-box {
+    background: var(--gtf-correct);
+    border-color: var(--gtf-correct);
+    color: #ffffff;
+}
+
+.gtf-form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.gtf-input {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid var(--gtf-border);
+    font-size: 16px;
+}
+
+.gtf-button {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: none;
+    background: #111827;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.gtf-button--ghost {
+    background: transparent;
+    border: 1px solid #111827;
+    color: #111827;
+}
+
+.gtf-button:disabled,
+.gtf-input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.gtf-message {
+    min-height: 22px;
+    font-weight: 600;
+    color: var(--gtf-neutral);
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.gtf-message.is-wrong {
+    color: var(--gtf-wrong);
+}
+
+.gtf-message.is-correct {
+    color: var(--gtf-correct);
+}
+
+.gtf-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.gtf-streak {
+    font-weight: 600;
+    color: #111827;
+}
+
+@media (max-width: 768px) {
+    .gtf-card {
+        padding: 24px;
+    }
+
+    .gtf-attempt-row {
+        grid-template-columns: 70px 1fr;
+    }
+
+    .gtf-letter-box {
+        width: 36px;
+        height: 44px;
+        font-size: 16px;
+    }
+
+    .gtf-form {
+        grid-template-columns: 1fr;
+    }
+}
